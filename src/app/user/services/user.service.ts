@@ -21,9 +21,7 @@ export class UserService {
       .pipe(
         tap((newUser: UserInterface) => {
           console.log(`added user id=${newUser.id}`);
-          setTimeout(() => {
-            this.router.navigate(['/users', 1]);
-          }, 1000);
+          this.router.navigate(['/users', newUser.id]);
         }),
         catchError((error: any) => {
           console.error(error);
