@@ -1,0 +1,7 @@
+<ca-loading *ngIf="isLoading$ | async"></ca-loading>
+<div *ngIf="currentUser$ | async as user">
+  <div class="flex flex-col w-full h-full bg-slate-100 p-6 rounded shadow">
+    <h3>{{ user.username }}</h3>
+    <p>{{ user.email }}</p>
+  </div>
+</div>

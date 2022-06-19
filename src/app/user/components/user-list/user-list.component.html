@@ -1,0 +1,13 @@
+<ca-loading *ngIf="isLoading$ | async"></ca-loading>
+<ng-container *ngIf="userList$ | async as userList">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <a
+      [routerLink]="['/users', user.id]"
+      *ngFor="let user of userList"
+      class="flex flex-col w-full h-full bg-slate-100 p-6 rounded shadow"
+    >
+      <h3>{{ user.username }}</h3>
+      <p>{{ user.email }}</p>
+    </a>
+  </div>
+</ng-container>
