@@ -1,3 +1,12 @@
+# App description
+
+- Use NGXS
+- Create routes with :
+  - Add user view "users/add"
+  - User detail view "users/1"
+  - Dashboad view "/" that will list all users
+- Test with NgMock
+
 # ChallengeAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
