@@ -4,20 +4,31 @@ import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
+  platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
+import { ngMocks } from 'ng-mocks';
 
 declare const require: {
-  context(path: string, deep?: boolean, filter?: RegExp): {
+  context(
+    path: string,
+    deep?: boolean,
+    filter?: RegExp
+  ): {
     <T>(id: string): T;
     keys(): string[];
   };
 };
 
+ngMocks.autoSpy('jasmine');
+// ngMocks.defaultMock(AuthService, () => ({
+//   isLoggedIn$: EMPTY,
+//   currentUser$: EMPTY,
+// }));
+
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting(),
+  platformBrowserDynamicTesting()
 );
 
 // Then we find all the tests.
