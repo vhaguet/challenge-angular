@@ -41,7 +41,14 @@ export class UserState {
   getUser(ctx: StateContext<UserStateInterface>, action: GetUser) {
     const { id } = action;
 
-    ctx.patchState({ isLoading: true });
+    const state = ctx.getState();
+    let currentUser = state.currentUser;
+
+    if (currentUser !== null && currentUser.id !== id) {
+      currentUser = null;
+    }
+
+    ctx.patchState({ currentUser: currentUser, isLoading: true });
 
     return this.userService.getUser(id).pipe(
       tap((user) => {

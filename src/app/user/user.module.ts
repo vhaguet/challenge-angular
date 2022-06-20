@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -12,6 +11,7 @@ import { UserListComponent } from 'src/app/user/components/user-list/user-list.c
 import { UserViewComponent } from 'src/app/user/components/user-view/user-view.component';
 import { UserService } from 'src/app/user/services/user.service';
 import { LoadingModule } from 'src/app/shared/modules/loading/loading.module';
+import { UserFormModule } from 'src/app/shared/modules/user-form/user-form.module';
 
 const routes = [
   {
@@ -34,9 +34,9 @@ const routes = [
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(UserDataService),
     RouterModule.forChild(routes),
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     LoadingModule,
+    UserFormModule,
   ],
   declarations: [CreateUserComponent, UserListComponent, UserViewComponent],
   providers: [UserService],

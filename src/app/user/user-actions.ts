@@ -1,8 +1,8 @@
-import { UserInterface } from 'src/app/user/types/user.interface';
+import { UserInputInterface } from 'src/app/user/types/user-input.interface';
 
 export class AddUser {
   static readonly type = '[User] Add one';
-  constructor(public newUser: UserInterface) {}
+  constructor(public newUser: UserInputInterface) {}
 }
 
 export class GetUser {
