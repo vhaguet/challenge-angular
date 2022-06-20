@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { UserDataService } from './in-memory-data.service';
+import { UserDataService } from './user-data.service';
 
 import { CreateUserComponent } from 'src/app/user/components/create-user/create-user.component';
 import { UserListComponent } from 'src/app/user/components/user-list/user-list.component';
