@@ -4,10 +4,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { UserService } from '../../services/user.service';
-import { GetUser } from '../../user-actions';
-import { UserDataService } from '../../user-data.service';
-import { UserState } from '../../user-state';
+import { UserService } from 'src/app/user/services/user.service';
+import { GetUser } from 'src/app/user/states/user.actions';
+import { DataService } from 'src/app/shared/services/data.service';
+import { UserState } from 'src/app/user/states/user.state';
 import { UserViewComponent } from './user-view.component';
 
 describe('UserViewComponent', () => {
@@ -21,7 +21,7 @@ describe('UserViewComponent', () => {
         NgxsModule.forRoot([UserState], {}),
         RouterTestingModule,
         HttpClientTestingModule,
-        HttpClientInMemoryWebApiModule.forRoot(UserDataService),
+        HttpClientInMemoryWebApiModule.forRoot(DataService),
       ],
       declarations: [UserViewComponent],
       providers: [UserService],

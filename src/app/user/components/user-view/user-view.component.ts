@@ -4,8 +4,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 import { UserInterface } from 'src/app/user/types/user.interface';
-import { UserSelectors } from 'src/app/user/user-selectors';
-import { GetUser } from 'src/app/user/user-actions';
+import { UserSelectors } from 'src/app/user/states/user.selectors';
+import { GetUser } from 'src/app/user/states/user.actions';
 
 @Component({
   selector: 'ca-user-view',

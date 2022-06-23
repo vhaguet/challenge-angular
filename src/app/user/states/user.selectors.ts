@@ -1,6 +1,6 @@
 import { Selector } from '@ngxs/store';
 
-import { UserState } from 'src/app/user/user-state';
+import { UserState } from 'src/app/user/states/user.state';
 import { UserInterface } from 'src/app/user/types/user.interface';
 import { UserStateInterface } from 'src/app/user/types/userState.interface';
 

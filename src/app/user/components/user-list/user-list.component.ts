@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import { FetchAllUser } from 'src/app/user/user-actions';
+import { FetchAllUser } from 'src/app/user/states/user.actions';
 import { UserInterface } from 'src/app/user/types/user.interface';
-import { UserSelectors } from 'src/app/user/user-selectors';
+import { UserSelectors } from 'src/app/user/states/user.selectors';
 
 @Component({
   selector: 'ca-user-list',
@@ -19,6 +19,10 @@ export class UserListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    this.fetchAllUser();
+  }
+
+  fetchAllUser(): void {
     this.store.dispatch(FetchAllUser);
   }
 }

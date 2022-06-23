@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, take, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { UserInterface } from 'src/app/user/types/user.interface';
@@ -24,8 +24,9 @@ export class UserService {
     return this.http
       .post<UserInterface>(this.usersUrl, user, this.httpOptions)
       .pipe(
+        take(1),
         tap((newUser: UserInterface) => {
-          console.log(`added user id=${newUser.id}`);
+          console.log(`added user id=${newUser?.id}`);
           this.ngZone.run(() => this.router.navigate(['/users', newUser.id]));
         }),
         catchError((error: any) => {
@@ -37,6 +38,7 @@ export class UserService {
 
   fetchAllUser(): Observable<UserInterface[]> {
     return this.http.get<UserInterface[]>(this.usersUrl).pipe(
+      take(1),
       tap((_) => console.log('fetched users')),
       catchError(this.handleError<UserInterface[]>('fetchAllUser', []))
     );
@@ -44,7 +46,11 @@ export class UserService {
 
   getUser(id: number): Observable<UserInterface> {
     const url = `${this.usersUrl}/${id}`;
-    return this.http.get<UserInterface>(url);
+    return this.http.get<UserInterface>(url).pipe(
+      take(1),
+      tap((_) => console.log(`Get user id=${id}`)),
+      catchError(this.handleError<UserInterface>('getUser'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

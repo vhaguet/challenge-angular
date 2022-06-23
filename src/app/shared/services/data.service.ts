@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { UserInterface } from 'src/app/user/types/user.interface';
-import { mockUsers } from '../mocks';
+import { mockUsers } from 'src/app/mocks';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserDataService implements InMemoryDbService {
-  createDb() {
+export class DataService implements InMemoryDbService {
+  createDb(): { users: UserInterface[] } {
     const users = mockUsers;
     return { users };
   }

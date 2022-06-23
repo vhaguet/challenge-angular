@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { AddUser } from 'src/app/user/user-actions';
-import { UserSelectors } from 'src/app/user/user-selectors';
+import { AddUser } from 'src/app/user/states/user.actions';
+import { UserSelectors } from 'src/app/user/states/user.selectors';
 import { UserInputInterface } from 'src/app/user/types/user-input.interface';
 
 @Component({
