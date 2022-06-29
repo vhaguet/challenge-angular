@@ -1,0 +1,9 @@
+<ng-container *ngIf="userProps">
+  <a
+    [routerLink]="['/users', userProps.id]"
+    class="flex flex-col w-full h-full bg-slate-100 p-6 rounded shadow"
+  >
+    <h3 class="user-username">{{ userProps.username }}</h3>
+    <p class="user-email">{{ userProps.email }}</p>
+  </a>
+</ng-container>

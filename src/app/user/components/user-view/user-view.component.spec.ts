@@ -38,7 +38,7 @@ describe('UserViewComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = MockRender(`<ca-user-list></ca-user-list>`);
+    fixture = MockRender(`<ca-user-view></ca-user-view>`);
     component = fixture.componentInstance;
     store = ngMocks.get(Store);
     fixture.detectChanges();

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 
-import { AddUser, FetchAllUser, GetUser } from 'src/app/user/states/user.actions';
+import {
+  AddUser,
+  FetchAllUser,
+  GetUser,
+} from 'src/app/user/states/user.actions';
 import { UserStateInterface } from 'src/app/user/types/userState.interface';
 import { tap } from 'rxjs';
 import { UserService } from 'src/app/user/services/user.service';
@@ -43,6 +47,10 @@ export class UserState {
 
     const state = ctx.getState();
     let currentUser = state.currentUser;
+
+    if (id <= 0) {
+      return false;
+    }
 
     if (currentUser !== null && currentUser.id !== id) {
       currentUser = null;
