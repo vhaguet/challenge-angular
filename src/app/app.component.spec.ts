@@ -1,9 +1,11 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+
+import { AppComponent } from 'src/app/app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -15,6 +17,7 @@ describe('AppComponent', () => {
         MatMenuModule,
       ],
       declarations: [AppComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -24,16 +27,15 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  // it(`should have as title 'challenge-angular'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app.title).toEqual('challenge-angular');
-  // });
+  it(`should have as title 'challenge-angular'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('challenge-angular');
+  });
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   expect(compiled.querySelector('.content span')?.textContent).toContain('challenge-angular app is running!');
-  // });
+  it('should have 3 views', () => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.views.length).toEqual(3);
+  });
 });

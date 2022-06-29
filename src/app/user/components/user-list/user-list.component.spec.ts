@@ -1,74 +1,65 @@
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { MockBuilder, MockRender, MockReset } from 'ng-mocks';
+import { TestBed } from '@angular/core/testing';
+import {
+  DefaultRenderComponent,
+  MockedComponentFixture,
+  MockRender,
+  MockReset,
+  ngMocks,
+} from 'ng-mocks';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
 
 import { UserListComponent } from 'src/app/user/components/user-list/user-list.component';
 import { DataService } from 'src/app/shared/services/data.service';
 import { UserState } from 'src/app/user/states/user.state';
-import { UserModule } from 'src/app/user/user.module';
 import { FetchAllUser } from 'src/app/user/states/user.actions';
+import { mockUsers } from 'src/app/mocks';
+import { UserSelectors } from 'src/app/user/states/user.selectors';
 import { UserService } from 'src/app/user/services/user.service';
 
-fdescribe('UserListComponent', () => {
+describe('UserListComponent', () => {
+  let fixture: MockedComponentFixture<UserListComponent>;
+  let component: DefaultRenderComponent<UserListComponent>;
   let store: Store;
-  // let component: UserListComponent;
-  // let fixture: ComponentFixture<UserListComponent>;
 
-  // const initTestBed = () => {
-  //   return MockBuilder(UserListComponent, [UserModule])
-  //     .keep(NgxsModule.forRoot([UserState]), { export: true })
-  //     .keep(HttpClientInMemoryWebApiModule.forRoot(DataService))
-  //     .replace(HttpClientModule, HttpClientTestingModule)
-  //     .replace(RouterModule, RouterTestingModule);
-  // };
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [UserListComponent],
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
-        NgxsModule.forRoot([UserState]),
-        HttpClientTestingModule,
+        NgxsModule.forRoot([UserState], {}),
         RouterTestingModule,
+        HttpClientTestingModule,
+        HttpClientInMemoryWebApiModule.forRoot(DataService),
       ],
+      declarations: [UserListComponent],
       providers: [UserService],
-    });
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    //   fixture = MockRender(UserListComponent);
-    //   component = fixture.componentInstance;
-    //   fixture.detectChanges();
-    store = TestBed.inject(Store);
+    fixture = MockRender(`<ca-user-list></ca-user-list>`);
+    component = fixture.componentInstance;
+    store = ngMocks.get(Store);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    const fixture = MockRender(`<ca-user-list></ca-user-list>`);
-    expect(fixture.componentInstance).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  // it('should create component', () => {
-  //   expect(component).toBeDefined();
-  // });
+  it('should have users', async () => {
+    await lastValueFrom(store.dispatch(FetchAllUser));
+    const users = store.selectSnapshot(UserSelectors.userList);
+    // console.log({ users });
+    // console.log(users?.length);
+    // console.log({ mockUsers });
+    // console.log(mockUsers?.length);
+    expect(users?.length).toEqual(mockUsers?.length);
+  });
 
-  // it('should fetchAllUser dispatch action FetchAllUser', () => {
-  //   const fixture = MockRender(`<ca-user-list></ca-user-list>`);
-  //   spyOn(store, 'dispatch');
-
-  //   fixture.detectChanges();
-
-  //   expect(store.dispatch).toHaveBeenCalledTimes(1);
-  // });
-
-  // it('should dispatch to have been called with FetchAllUser action', () => {
-  //   spyOn(store, 'dispatch');
-  //   component.fetchAllUser();
-  //   expect(store.dispatch).toHaveBeenCalledWith(FetchAllUser);
-  // });
-
-  // afterAll(MockReset);
+  afterAll(MockReset);
 });

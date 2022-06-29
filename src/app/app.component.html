@@ -9,28 +9,14 @@
     <mat-menu #menu="matMenu">
       <a
         mat-menu-item
+        *ngFor="let view of views"
         class="flex justify-start items-center"
-        [routerLink]="['/users/add']"
-        ><mat-icon class="m-0 flex items-center text-xl h-full">add</mat-icon
-        ><span class="pl-1 self-start">user</span></a
-      >
-      <a
-        mat-menu-item
-        class="flex justify-start items-center"
-        [routerLink]="['/users']"
-      >
-        <mat-icon class="m-0 flex items-center text-xl h-full">list</mat-icon
-        ><span class="pl-2 self-start">users</span></a
-      >
-      <a
-        mat-menu-item
-        class="flex justify-start items-center"
-        [routerLink]="['/dashboard']"
-      >
-        <mat-icon class="m-0 flex items-center text-xl h-full"
-          >settings</mat-icon
-        ><span class="pl-2 self-start">Dashboard</span></a
-      >
+        [routerLink]="[view.address]"
+        ><mat-icon class="m-0 flex items-center text-xl h-full">{{
+          view.icon
+        }}</mat-icon>
+        <span class="pl-1 self-start">{{ view.text }}</span>
+      </a>
     </mat-menu>
   </div>
 </mat-toolbar>
