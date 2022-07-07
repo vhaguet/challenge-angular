@@ -107,6 +107,37 @@
           }
         }
       }
+    },
+    "user-lib": {
+      "projectType": "library",
+      "root": "projects/user-lib",
+      "sourceRoot": "projects/user-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/user-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/user-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/user-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/user-lib/src/test.ts",
+            "tsConfig": "projects/user-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/user-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "challenge-angular",
