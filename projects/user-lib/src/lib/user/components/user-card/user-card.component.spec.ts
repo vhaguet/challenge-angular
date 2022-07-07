@@ -25,12 +25,12 @@ describe('UserCardComponent', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     const fixture = MockRender(`<ca-user-card></ca-user-card>`);
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should display input user data', () => {
+  test('should display input user data', () => {
     const fixture = MockRender(`<ca-user-card [user]="user"></ca-user-card>`, {
       user: {
         id: 1,

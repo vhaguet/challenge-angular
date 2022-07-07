@@ -47,11 +47,11 @@ describe('UserListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have users', async () => {
+  test('should have users', async () => {
     await lastValueFrom(store.dispatch(FetchAllUser));
     const users = store.selectSnapshot(UserSelectors.userList);
     // console.log({ users });

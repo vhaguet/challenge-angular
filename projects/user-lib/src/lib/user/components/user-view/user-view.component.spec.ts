@@ -44,11 +44,11 @@ describe('UserViewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show user', async () => {
+  test('should show user', async () => {
     await lastValueFrom(store.dispatch(new GetUser(3)));
     const user = store.selectSnapshot((state) => state.user);
     expect(user.currentUser.id).toBe(3);

@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --watch",
-    "test:singlerun": "ng test --code-coverage"
+    "test": "jest"
   },
   "private": true,
   "dependencies": {
@@ -33,15 +32,13 @@
     "@angular/compiler-cli": "~14.0.5",
     "@ngxs/devtools-plugin": "^3.7.4",
     "@types/jasmine": "~4.0.3",
+    "@types/jest": "^28.1.4",
     "@types/node": "^18.0.3",
     "angular-in-memory-web-api": "^0.14.0",
     "autoprefixer": "^10.4.7",
     "jasmine-core": "~4.2.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
+    "jest": "^28.1.2",
+    "jest-preset-angular": "^12.1.0",
     "ng-mocks": "^14.0.1",
     "ng-packagr": "^14.0.0",
     "postcss": "^8.4.14",

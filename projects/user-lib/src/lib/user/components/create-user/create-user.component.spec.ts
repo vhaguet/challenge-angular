@@ -44,25 +44,25 @@ describe('CreateUserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialValues be empty', () => {
+  test('should initialValues be empty', () => {
     expect(component.initialValues).toEqual({
       username: '',
       email: '',
     });
   });
 
-  it('should onSubmit dispatch action AddUser', () => {
-    spyOn(store, 'dispatch');
+  test('should onSubmit dispatch action AddUser', () => {
+    jest.spyOn(store, 'dispatch');
     component.onSubmit({ username: 'myUsername', email: 'myEmail' });
     expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 
-  it('should dispatch to have been called with AddUser action', () => {
-    spyOn(store, 'dispatch');
+  test('should dispatch to have been called with AddUser action', () => {
+    jest.spyOn(store, 'dispatch');
     component.onSubmit({ username: 'myUsername', email: 'myEmail' });
     expect(store.dispatch).toHaveBeenCalledWith(
       new AddUser({ username: 'myUsername', email: 'myEmail' })
