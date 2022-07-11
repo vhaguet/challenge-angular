@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 import { UserInterface } from 'projects/user-lib/src/lib/user/types/user.interface';
 import { UserInputInterface } from 'projects/user-lib/src/lib/user/types/user-input.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserService {
   constructor(
     private http: HttpClient,
